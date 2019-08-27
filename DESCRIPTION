@@ -1,12 +1,15 @@
-Package: MAXt
+Package: tMAE
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Vicente",
+           family = "Yepez",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+           email = "yepez@in.tum.de")
+    person(given = "Christian",
+           family = "Mertes",
+           role = c("aut", "cre"),
+           email = "mertes@in.tum.de")           
 Description: What the package does (one paragraph).
 License: What license it uses
 Encoding: UTF-8
