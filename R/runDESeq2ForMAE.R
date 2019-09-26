@@ -121,7 +121,7 @@ DESeq4MAE <- function(data, minCoverage = 10, disp = .05, independentFiltering =
     return(res)
 }
 
-data <- fread('/data/ouga/home/ag_gagneur/yepez/workspace/RNAseq-ASHG19/Data/input_data/variants/chr21_allellic_counts.tsv')
-setnames(data, 'sample', 'MAE_ID')
-rmae <- DESeq4MAE(data)
+# data <- fread('/data/ouga/home/ag_gagneur/yepez/workspace/RNAseq-ASHG19/Data/input_data/variants/chr21_allellic_counts.tsv')
+# setnames(data, 'sample', 'MAE_ID')
+# rmae <- DESeq4MAE(data)
 
