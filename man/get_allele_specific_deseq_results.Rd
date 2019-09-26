@@ -4,8 +4,7 @@
 \alias{get_allele_specific_deseq_results}
 \title{Get Allele Specific deseq results}
 \usage{
-get_allele_specific_deseq_results(dds_res, min_fc = log2(3/1),
-  padj_threshold = 0.1)
+get_allele_specific_deseq_results(dds_res)
 }
 \arguments{
 \item{dds_res}{object}

@@ -10,10 +10,10 @@ allelic_granges_to_dt(data)
 \item{data}{GRanges object}
 }
 \value{
-data.table object
+data
 }
 \description{
-This function allows you to convert a GRanges object to a data table.
+Converts a GRanges object to a data.table
 }
 \examples{
 allelic_granges_to_dt()
