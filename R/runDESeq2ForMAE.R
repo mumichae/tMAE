@@ -1,8 +1,8 @@
 #' Convert GRanges object to a Data Table
 #'
-#' This function allows you to convert a GRanges object to a data table.
+#' @description Converts a GRanges object to a data.table
 #' @param data GRanges object
-#' @return data.table object
+#' @return data
 #' @examples
 #' allelic_granges_to_dt()
 
@@ -31,37 +31,23 @@ allelic_granges_to_dt <- function(data){
 }
 
 
-#' Run Deseq for allele Specific Expression
-#'
-#' This function allows you to ...
-#' @param data data.table object.
-#' @param min_cov Default is 10.
-#' @param disp Default is 0.05
-#' @param indepFilter Default is False
-#' @return A list with the results.
-#' @examples
-#' run_deseq_for_allele_specific_expression()
-
-run_deseq_for_allele_specific_expression <- function(data, min_cov=10,
-                                                     disp=0.05, indepFilter=FALSE){
-    
-    require(DESeq2)
-    
-    if(any(class(data) == 'data.table')){
-        dt <- copy(data)
+# Performs the Negative Binomial Wald Test
+deseq_for_allele_specific_expression <- function(data, minCoverage=10,
+                                                     disp=0.05, independentFiltering=FALSE){
+    # Obtain a data.table from imput
+    if(any(class(data) == 'data.frame')){
+        dt <- as.data.table(data)
         dt[, c('lowMAPQDepth', 'lowBaseQDepth', 'rawDepth', 'otherBases', 'improperPairs') := NULL]
-        setnames(dt, old = c("contig", "refAllele", "altAllele", "refCount", "altCount", "totalCount", "position"),
-                 new = c("chr", "REF", "ALT", "ref_cov", "alt_cov", "coverage", "pos"))
     } else if(class(data) == 'GRanges'){
         dt <- allelic_granges_to_dt(data)
     }
     
-    dt <- dt[coverage >= min_cov]
+    dt <- dt[totalCount >= minCoverage]
     
     # create deseq object
     dds <- DESeqDataSetFromMatrix(
-        as.matrix(dt[, .(alt_cov, ref_cov)]),
-        DataFrame(condition=factor(c("alt", "ref"))),
+        as.matrix(dt[, .(altCount, refCount)]),
+        DataFrame(condition=factor(c("altAllele", "refAllele"))),
         design = ~ condition
     )
     
@@ -70,7 +56,7 @@ run_deseq_for_allele_specific_expression <- function(data, min_cov=10,
     
     mcols(rowRanges(dds)) <- dt
     
-    # estimate the size factor and pseudo dispersion
+    # estimate the size factors and pseudo dispersion
     dds <- estimateSizeFactors(dds)
     # dds <- estimateDispersions(dds) # impossible to determine now with only 1 sample and 2 conditions
     
@@ -79,10 +65,11 @@ run_deseq_for_allele_specific_expression <- function(data, min_cov=10,
     
     # run wald test
     dds <- nbinomWaldTest(dds)
-    res <- results(dds, contrast = c("condition", "alt", "ref"), independentFiltering = indepFilter)
+    res <- results(dds, contrast = c("condition", "altAllele", "refAllele"), 
+                   independentFiltering = independentFiltering)
     
     
-    return(list(dds = dds, res = res))
+    return(list(dt = dt, res = res))
 }
 
 
@@ -96,25 +83,16 @@ run_deseq_for_allele_specific_expression <- function(data, min_cov=10,
 #' @examples
 #' get_allele_specific_deseq_results()
 
-get_allele_specific_deseq_results <- function(dds_res, min_fc=log2(3/1), padj_threshold = .1){
+get_allele_specific_deseq_results <- function(dds_res){
     
     # get needed info
-    dds <- dds_res$dds
-    mc <- mcols(dds)
-    mc$REF <- as.character(mc$REF)
-    mc$ALT <- as.character(unlist(mc$ALT))
-    mc$GT = '0/1'
-    dt <- as.data.table(mc[, c("chr", "pos", "REF", "ALT", "GT", "alt_cov", "ref_cov")])
+    dt <- dds_res$dt
     
     # add pvalue and padj
     dt[, c("pvalue","padj", "log2FC") := list(dds_res$res$pvalue, dds_res$res$padj, dds_res$res$log2FoldChange)]
     
-    # prediction, do not mind the pvalue
-    dt[, RNA_GT := "0/1"]
-    dt[abs(log2FC) >= min_fc, RNA_GT := ifelse(log2FC < 0, "0/0", "1/1")]
-    
-    # add additional features
-    dt[, alt_freq := alt_cov / (alt_cov + ref_cov)]
+    # add frequency of the alternative allele
+    dt[, altFreq := altCount / (altCount + refCount)]
     
     return(dt)
 }
@@ -123,22 +101,27 @@ get_allele_specific_deseq_results <- function(dds_res, min_fc=log2(3/1), padj_th
 #'
 #' This function allows you to ...
 #' @param data GRanges object.
-#' @param min_cov Default is 10
-#' @param disp Default is 0.05
-#' @param indepFilter Default is False
-#' @param min_fc Default is log2(3/1)
-#' @param padj_threshold Default is 0.01
+#' @param min_cov minimum total allelic count. Default is 10.
+#' @param disp Gene dispersion for the NB test. Default is 0.05.
+#' @param independentFiltering Parameter that affects the multiple testing. Default is FALSE.
 #' @return Results.
 #' @export
 #' @examples
-#' run_deseq_all_mae()
+#' file <- system.file("extdata", "demo_MAE_counts.tsv", package = "tMAE", mustWork = TRUE)
+#' maeCounts <- read.table(file)
+#' run_deseq_all_mae(maeCounts)
 
-run_deseq_all_mae <- function(data, min_cov = 10, disp = .05, indepFilter = FALSE, min_fc=log2(3/1), padj_threshold = .1){
+DESeq4MAE <- function(data, minCoverage = 10, disp = .05, independentFiltering = FALSE){
     
-    pt <- run_deseq_for_allele_specific_expression(data, min_cov=min_cov, disp=disp, indepFilter=indepFilter)
+    pt <- deseq_for_allele_specific_expression(data, minCoverage=minCoverage, disp=disp, 
+                                                   independentFiltering=independentFiltering)
     
-    res <- get_allele_specific_deseq_results(pt, min_fc = min_fc, padj_threshold = padj_threshold)
+    res <- get_allele_specific_deseq_results(pt)
     
     return(res)
 }
+
+data <- fread('/data/ouga/home/ag_gagneur/yepez/workspace/RNAseq-ASHG19/Data/input_data/variants/chr21_allellic_counts.tsv')
+setnames(data, 'sample', 'MAE_ID')
+rmae <- DESeq4MAE(data)
 

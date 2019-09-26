@@ -21,12 +21,14 @@ Imports:
   magrittr,
   tidyr,
   GenomicRanges,
-  SummarizedExperiment
+  SummarizedExperiment,
+  ggplot2
 Depends: 
   dplyr,
   data.table,
   magrittr,
   tidyr,
   GenomicRanges,
-  SummarizedExperiment
+  SummarizedExperiment,
+  ggplot2
 

@@ -1,0 +1,23 @@
+citHeader("To cite tMAE in publications please use:")
+citEntry(entry = "article",
+    title    = "Computational pipeline for detecting aberrant events in RNA sequencing",
+    author   = personList(
+		    person(c("Vicente", "A"), "Y\\'{e}pez"),                    
+		    person("Christian", "Mertes"),
+                    person(c("Michaela", "F"), "M\\"{u}ller"),
+                    person(c("Daniela", "S"), "Andrade"),
+                    person("Leonhard", "Wachutka"),
+                    person(c("Patricia", "F"), "Goldberg"),
+                    person("Holger", "Prokisch"),
+                    person("Julien", "Gagneur")),
+    journal  = "",
+    volume   = "",
+    number   = "",
+    pages    = "",
+    year     = "",
+    issn     = "0002-9297",
+    doi      = "",
+    textVersion  = paste(
+            "Yepez V, et al.,",
+            "Computational pipeline for detecting aberrant events in RNA sequencing.",
+            "") )
