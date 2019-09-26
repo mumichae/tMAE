@@ -8,22 +8,25 @@ DESeq4MAE(data, minCoverage = 10, disp = 0.05,
   independentFiltering = FALSE)
 }
 \arguments{
-\item{data}{GRanges object.}
+\item{data}{A data.frame containing allelic counts.}
+
+\item{minCoverage}{minimum total allelic count. Default is 10.}
 
 \item{disp}{Gene dispersion for the NB test. Default is 0.05.}
 
 \item{independentFiltering}{Parameter that affects the multiple testing. Default is FALSE.}
-
-\item{min_cov}{minimum total allelic count. Default is 10.}
 }
 \value{
-Results.
+Mono-allelic results table containing original counts plus p-value, p-adjusted and freqALT columns.
 }
 \description{
-This function allows you to ...
+Uses a negative binomial test to determine if a variant is mono-allelically expressed.
 }
 \examples{
 file <- system.file("extdata", "demo_MAE_counts.tsv", package = "tMAE", mustWork = TRUE)
 maeCounts <- read.table(file)
 run_deseq_all_mae(maeCounts)
+}
+\author{
+Vicente Yepez, Christian Mertes
 }

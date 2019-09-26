@@ -1,5 +1,5 @@
 Package: tMAE
-Title: What the Package Does (One Line, Title Case)
+Title: Tests and visualize for Mono-allelic expressed variants
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Vicente",

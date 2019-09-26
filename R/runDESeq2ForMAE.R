@@ -1,11 +1,4 @@
-#' Convert GRanges object to a Data Table
-#'
-#' @description Converts a GRanges object to a data.table
-#' @param data GRanges object
-#' @return data
-#' @examples
-#' allelic_granges_to_dt()
-
+# Converts a GRanges object to a Data Table
 allelic_granges_to_dt <- function(data){
     # take only heterozygous mutation and with enough coverage
     data$GT <- as.character(data$GT)
@@ -73,16 +66,7 @@ deseq_for_allele_specific_expression <- function(data, minCoverage=10,
 }
 
 
-#' Get Allele Specific deseq results
-#'
-#' This function allows you to ...
-#' @param dds_res object
-#' @param min_fc Default is log2(3/1)
-#' @param padj_threshold Default is 0.1
-#' @return data.table object
-#' @examples
-#' get_allele_specific_deseq_results()
-
+# Get Allele Specific deseq results
 get_allele_specific_deseq_results <- function(dds_res){
     
     # get needed info
@@ -99,12 +83,13 @@ get_allele_specific_deseq_results <- function(dds_res){
 
 #' Run deseq test for MAE
 #'
-#' This function allows you to ...
-#' @param data GRanges object.
-#' @param min_cov minimum total allelic count. Default is 10.
+#' @description Uses a negative binomial test to determine if a variant is mono-allelically expressed.
+#' @author Vicente Yepez, Christian Mertes
+#' @param data A data.frame containing allelic counts.
+#' @param minCoverage minimum total allelic count. Default is 10.
 #' @param disp Gene dispersion for the NB test. Default is 0.05.
 #' @param independentFiltering Parameter that affects the multiple testing. Default is FALSE.
-#' @return Results.
+#' @return Mono-allelic results table containing original counts plus p-value, p-adjusted and freqALT columns.
 #' @export
 #' @examples
 #' file <- system.file("extdata", "demo_MAE_counts.tsv", package = "tMAE", mustWork = TRUE)
