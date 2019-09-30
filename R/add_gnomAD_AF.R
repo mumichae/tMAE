@@ -16,8 +16,6 @@
 
 add_gnomAD_AF <- function(data, gene_assembly = c('hg19', 'hg38'), max_af_cutoff = .001,
                       populations = c('AF', 'AF_afr', 'AF_amr', 'AF_eas', 'AF_nfe')){
-  
-  data <- data[1:500]
   mafdb <- switch('hg19',
                   hg19 = MafDb.gnomAD.r2.1.hs37d5,
                   hg38 = MafDb.gnomAD.r2.1.GRCh38
