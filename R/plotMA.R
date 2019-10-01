@@ -22,12 +22,12 @@
 
 plotMA <- function(data, title = NULL, padjCutoff = 0.05, 
                    allelicRatioCutoff = .8, rare_column = NULL){
-  stopifnot(c('altCount', 'refCount', 'altFreq', 'padj') %in% colnames(data))
+  stopifnot(c('altCount', 'refCount', 'altRatio', 'padj') %in% colnames(data))
   
   data <- as.data.table(data)
   data[, FC := (altCount + 1)/(refCount + 1)]
   data[, Significant := padj <= padjCutoff & 
-         (altFreq > allelicRatioCutoff | altFreq < (1-allelicRatioCutoff))]
+         (altRatio > allelicRatioCutoff | altRatio < (1-allelicRatioCutoff))]
   
   # Make the sketch of the plot
   g <- ggplot(data, aes(totalCount, FC)) + 

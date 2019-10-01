@@ -75,8 +75,8 @@ get_allele_specific_deseq_results <- function(dds_res){
     # add pvalue and padj
     dt[, c("pvalue","padj", "log2FC") := list(dds_res$res$pvalue, dds_res$res$padj, dds_res$res$log2FoldChange)]
     
-    # add frequency of the alternative allele
-    dt[, altFreq := altCount / (altCount + refCount)]
+    # add ratio the alternative allele
+    dt[, altRatio := altCount / (altCount + refCount)]
     
     return(dt)
 }
