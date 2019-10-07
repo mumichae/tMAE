@@ -47,7 +47,7 @@ deseq_for_allele_specific_expression <- function(data, minCoverage=10,
     if(!is.null(data$hgncid))
         rownames(dds) <- data[, paste0(hgncid, "_", pos)]  # Doesn't always have the gene name
     
-    mcols(rowRanges(dds)) <- dt
+    # mcols(rowRanges(dds)) <- dt
     
     # estimate the size factors and pseudo dispersion
     dds <- estimateSizeFactors(dds)
