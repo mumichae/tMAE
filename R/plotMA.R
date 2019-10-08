@@ -14,11 +14,11 @@
 #' @return A ggplot object containing the MA plot.
 #' @export
 #' @examples
-#' file <- system.file("extdata", "demo_MAE_counts.tsv",
-#'  package = "tMAE", mustWork = TRUE)
-#' maeCounts <- read.table(file)
-#' res <- run_deseq_all_mae(maeCounts)
-#' plotMA(res)
+#' # file <- system.file("extdata", "demo_MAE_counts.tsv",
+#'  # package = "tMAE", mustWork = TRUE)
+#' # maeCounts <- read.table(file)
+#' # res <- run_deseq_all_mae(maeCounts)
+#' # plotMA(res)
 
 plotMA <- function(data, title = NULL, padjCutoff = 0.05, 
                    allelicRatioCutoff = .8, rare_column = NULL){

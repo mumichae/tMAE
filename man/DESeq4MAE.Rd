@@ -23,9 +23,9 @@ Mono-allelic results table containing original counts plus p-value, p-adjusted a
 Uses a negative binomial test to determine if a variant is mono-allelically expressed.
 }
 \examples{
-file <- system.file("extdata", "demo_MAE_counts.tsv", package = "tMAE", mustWork = TRUE)
-maeCounts <- read.table(file)
-run_deseq_all_mae(maeCounts)
+# file <- system.file("extdata", "demo_MAE_counts.tsv", package = "tMAE", mustWork = TRUE)
+# maeCounts <- read.table(file)
+# run_deseq_all_mae(maeCounts)
 }
 \author{
 Vicente Yepez, Christian Mertes

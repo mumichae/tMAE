@@ -9,10 +9,10 @@
 #' @return A data.table with the original contents plus columns containing allele frequencies from different gnomAD populations.
 #' @export
 #' @examples
-#' file <- system.file("extdata", "demo_MAE_counts.tsv", package = "tMAE", mustWork = TRUE)
-#' maeCounts <- read.table(file)
-#' maeRes <- run_deseq_all_mae(maeCounts)
-#' maeRes <- add_gnomAD_AF(maeCounts, gene_assembly = 'hg19')
+#' # file <- system.file("extdata", "demo_MAE_counts.tsv", package = "tMAE", mustWork = TRUE)
+#' # maeCounts <- read.table(file)
+#' # maeRes <- run_deseq_all_mae(maeCounts)
+#' # maeRes <- add_gnomAD_AF(maeCounts, gene_assembly = 'hg19')
 
 add_gnomAD_AF <- function(data, gene_assembly = c('hg19', 'hg38'), max_af_cutoff = .001,
                       populations = c('AF', 'AF_afr', 'AF_amr', 'AF_eas', 'AF_nfe')){

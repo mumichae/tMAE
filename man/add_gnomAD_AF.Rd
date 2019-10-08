@@ -24,10 +24,10 @@ A data.table with the original contents plus columns containing allele frequenci
 Add allele frequency information from gnomAD.
 }
 \examples{
-file <- system.file("extdata", "demo_MAE_counts.tsv", package = "tMAE", mustWork = TRUE)
-maeCounts <- read.table(file)
-maeRes <- run_deseq_all_mae(maeCounts)
-maeRes <- add_gnomAD_AF(maeCounts, gene_assembly = 'hg19')
+# file <- system.file("extdata", "demo_MAE_counts.tsv", package = "tMAE", mustWork = TRUE)
+# maeCounts <- read.table(file)
+# maeRes <- run_deseq_all_mae(maeCounts)
+# maeRes <- add_gnomAD_AF(maeCounts, gene_assembly = 'hg19')
 }
 \author{
 Vicente Yepez

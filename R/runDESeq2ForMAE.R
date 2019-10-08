@@ -92,9 +92,9 @@ get_allele_specific_deseq_results <- function(dds_res){
 #' @return Mono-allelic results table containing original counts plus p-value, p-adjusted and freqALT columns.
 #' @export
 #' @examples
-#' file <- system.file("extdata", "demo_MAE_counts.tsv", package = "tMAE", mustWork = TRUE)
-#' maeCounts <- read.table(file)
-#' run_deseq_all_mae(maeCounts)
+#' # file <- system.file("extdata", "demo_MAE_counts.tsv", package = "tMAE", mustWork = TRUE)
+#' # maeCounts <- read.table(file)
+#' # run_deseq_all_mae(maeCounts)
 
 DESeq4MAE <- function(data, minCoverage = 10, disp = .05, independentFiltering = FALSE){
     
