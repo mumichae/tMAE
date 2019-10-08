@@ -4,7 +4,7 @@ citEntry(entry = "article",
     author   = personList(
 		    person(c("Vicente", "A"), "Y\\'{e}pez"),                    
 		    person("Christian", "Mertes"),
-                    person(c("Michaela", "F"), "M\\"{u}ller"),
+                    person(c("Michaela", "F"), "Mueller"),
                     person(c("Daniela", "S"), "Andrade"),
                     person("Leonhard", "Wachutka"),
                     person(c("Patricia", "F"), "Goldberg"),

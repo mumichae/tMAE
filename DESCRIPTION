@@ -1,5 +1,5 @@
 Package: tMAE
-Title: Tests and visualize for Mono-allelic expressed variants
+Title: Tests and visualizes for Mono-allelic expressed variants
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Vicente",
@@ -17,18 +17,11 @@ LazyData: true
 RoxygenNote: 6.1.1
 Imports: 
   dplyr,
-  data.table,
   magrittr,
-  tidyr,
   GenomicRanges,
-  SummarizedExperiment,
-  ggplot2
+  ggplot2,
+  DESeq2,
+  BiocGenerics,
+  GenomicScores
 Depends: 
-  dplyr,
-  data.table,
-  magrittr,
-  tidyr,
-  GenomicRanges,
-  SummarizedExperiment,
-  ggplot2
-
+  data.table
