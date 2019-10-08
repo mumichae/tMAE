@@ -20,7 +20,6 @@
 #' @importFrom BiocGenerics score
 # #' @importFrom MafDb.gnomAD.r2.1.hs37d5 MafDb.gnomAD.r2.1.hs37d5 # removed because of space
 # #' @importFrom MafDb.gnomAD.r2.1.GRCh38 MafDb.gnomAD.r2.1.GRCh38
-#' @useDynLib tMAE
 #' 
 NULL
 
