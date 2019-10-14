@@ -2,7 +2,8 @@
 
 export(DESeq4MAE)
 export(add_gnomAD_AF)
-export(plotMA)
+export(plotAllelicCounts)
+export(plotMA4MAE)
 import(data.table)
 importFrom(BiocGenerics,estimateSizeFactors)
 importFrom(BiocGenerics,plotDispEsts)
