@@ -20,6 +20,7 @@
 #'          estimateSizeFactorsForMatrix replaceOutliers
 #'          dispersions dispersions<- nbinomWaldTest results
 #' @importFrom GenomicRanges GRanges
+#' @importFrom S4Vectors DataFrame
 #' @importFrom GenomicScores populations seqnames
 #' @importFrom BiocGenerics score start pos
 # #' @importFrom MafDb.gnomAD.r2.1.hs37d5 MafDb.gnomAD.r2.1.hs37d5 # removed because of space
