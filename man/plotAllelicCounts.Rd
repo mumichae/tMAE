@@ -4,8 +4,13 @@
 \alias{plotAllelicCounts}
 \title{plotAllelicCounts}
 \usage{
-plotAllelicCounts(data, title = NULL, padjCutoff = 0.05,
-  allelicRatioCutoff = 0.8, rare_column = NULL)
+plotAllelicCounts(
+  data,
+  title = NULL,
+  padjCutoff = 0.05,
+  allelicRatioCutoff = 0.8,
+  rare_column = NULL
+)
 }
 \arguments{
 \item{data}{A data.frame containing the counts or results table from \code{DESeq4MAE} function}

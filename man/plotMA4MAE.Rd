@@ -4,8 +4,13 @@
 \alias{plotMA4MAE}
 \title{plotMA4MAE}
 \usage{
-plotMA4MAE(data, title = NULL, padjCutoff = 0.05,
-  allelicRatioCutoff = 0.8, rare_column = NULL)
+plotMA4MAE(
+  data,
+  title = NULL,
+  padjCutoff = 0.05,
+  allelicRatioCutoff = 0.8,
+  rare_column = NULL
+)
 }
 \arguments{
 \item{data}{A data.frame containing the results table from \code{DESeq4MAE} function}

@@ -4,9 +4,12 @@
 \alias{add_gnomAD_AF}
 \title{Add allele frequencies from gnomAD}
 \usage{
-add_gnomAD_AF(data, gene_assembly = c("hg19", "hg38"),
-  max_af_cutoff = 0.001, populations = c("AF", "AF_afr", "AF_amr",
-  "AF_eas", "AF_nfe"))
+add_gnomAD_AF(
+  data,
+  gene_assembly = c("hg19", "hg38"),
+  max_af_cutoff = 0.001,
+  populations = c("AF", "AF_afr", "AF_amr", "AF_eas", "AF_nfe")
+)
 }
 \arguments{
 \item{data}{A data.frame containing allelic counts.}

@@ -4,8 +4,7 @@
 \alias{DESeq4MAE}
 \title{Run deseq test for MAE}
 \usage{
-DESeq4MAE(data, minCoverage = 10, disp = 0.05,
-  independentFiltering = FALSE)
+DESeq4MAE(data, minCoverage = 10, disp = 0.05, independentFiltering = FALSE)
 }
 \arguments{
 \item{data}{A data.frame containing allelic counts.}
