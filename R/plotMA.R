@@ -84,7 +84,7 @@ plotAllelicCounts <- function(data, title = NULL, padjCutoff = 0.05,
   data <- as.data.table(data)
   
   # Make the sketch of the plot
-  g <- ggplot(data, aes(altCount, refCount)) + 
+  g <- ggplot(data, aes(refCount, altCount)) + 
     theme_bw(base_size = 14) + scale_y_log10() + scale_x_log10() +
     labs(x = 'REF count + 1', y = 'ALT count + 1', title = title) + 
     geom_abline(slope = 1, intercept = 0)
