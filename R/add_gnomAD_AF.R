@@ -15,7 +15,7 @@
 #' # maeRes <- add_gnomAD_AF(maeCounts, gene_assembly = 'hg19')
 
 add_gnomAD_AF <- function(data, gene_assembly = c('hg19', 'hg38'), max_af_cutoff = .001,
-                      populations = c('AF', 'AF_afr', 'AF_amr', 'AF_eas', 'AF_nfe')){
+                      populations = c('AF', 'AF_afr', 'AF_amr', 'AF_eas', 'AF_nfe', 'AF_popmax')){
   mafdb <- switch(gene_assembly,
                   hg19 = MafDb.gnomAD.r2.1.hs37d5,
                   hg38 = MafDb.gnomAD.r2.1.GRCh38
@@ -25,9 +25,10 @@ add_gnomAD_AF <- function(data, gene_assembly = c('hg19', 'hg38'), max_af_cutoff
   pos <- data$position
   gr <- GRanges(seqnames = data$contig, ranges = IRanges(start = pos, end = pos), strand = '*')
   # Add score of all, African, American, East Asian and Non-Finnish European
-  pt <- score(mafdb, gr, pop = populations)
+  pt <- score(mafdb, gr, pop = populations) %>% as.data.table()
   # Compute the MAX_AF
-  pt$MAX_AF = apply(pt, 1, max, na.rm=TRUE)
+  setnames(pt, 'AF_pop_max', 'MAX_AF')
+  # pt$MAX_AF = apply(pt, 1, max, na.rm=TRUE)
   
   res <- cbind(data, pt) %>% as.data.table()
   
