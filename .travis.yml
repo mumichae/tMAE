@@ -4,3 +4,8 @@ language: R
 r: bioc-release
 
 cache: packages
+
+before_cache:
+  # they are too big to be cached
+  - R -e 'remove.packages("MafDb.gnomAD.r2.1.GRCh38")'
+  - R -e 'remove.packages("MafDb.gnomAD.r2.1.hs37d5")'
