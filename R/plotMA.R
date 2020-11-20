@@ -14,12 +14,11 @@
 #' @return A ggplot object containing the MA plot.
 #' @export
 #' @examples
-#' # file <- system.file("extdata", "demo_MAE_counts.tsv",
-#'  # package = "tMAE", mustWork = TRUE)
-#' # maeCounts <- read.table(file)
-#' # res <- run_deseq_all_mae(maeCounts)
-#' # plotMA4MAE(res)
-
+#' file <- system.file("extdata", "allelic_counts_HG00187.csv",
+#'     package = "tMAE", mustWork = TRUE)
+#' maeCounts <- fread(file)
+#' res <- DESeq4MAE(maeCounts)
+#' plotMA4MAE(res)
 plotMA4MAE <- function(data, title = NULL, padjCutoff = 0.05, 
                    allelicRatioCutoff = .8, rare_column = NULL){
   stopifnot(c('altCount', 'refCount', 'altRatio', 'padj') %in% colnames(data))
@@ -52,8 +51,6 @@ plotMA4MAE <- function(data, title = NULL, padjCutoff = 0.05,
   return(g)
 }
 
-# mt <- readRDS('/s/project/genetic_diagnosis/processed_results/mae/samples/65990-MUC1404_res.Rds')
-# plotMA(rmae, rare_column = 'rare')
 
 #' plotAllelicCounts
 #'
@@ -71,12 +68,12 @@ plotMA4MAE <- function(data, title = NULL, padjCutoff = 0.05,
 #' @return A ggplot object containing the MA plot.
 #' @export
 #' @examples
-#' # file <- system.file("extdata", "demo_MAE_counts.tsv",
-#'  # package = "tMAE", mustWork = TRUE)
-#' # maeCounts <- read.table(file)
-#' # res <- run_deseq_all_mae(maeCounts)
-#' # plotAllelicCounts(res)
-
+#' file <- system.file("extdata", "allelic_counts_HG00187.csv", 
+#'     package = "tMAE", mustWork = TRUE)
+#' maeCounts <- fread(file)
+#' res <- DESeq4MAE(maeCounts)
+#' plotAllelicCounts(res)
+#' 
 plotAllelicCounts <- function(data, title = NULL, padjCutoff = 0.05, 
                        allelicRatioCutoff = .8, rare_column = NULL){
   stopifnot(c('altCount', 'refCount') %in% colnames(data))
@@ -110,6 +107,3 @@ plotAllelicCounts <- function(data, title = NULL, padjCutoff = 0.05,
   }
   return(g)
 }
-
-# plotAllelicCounts(resMAE)
-# plotAllelicCounts(resMAE, rare_column = 'rare')

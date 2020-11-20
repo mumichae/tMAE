@@ -34,11 +34,12 @@ Creates an allelic counts plot, ie, counts of the alternative
    allele frequency columns present, dots will be highlighted accordingly.
 }
 \examples{
-# file <- system.file("extdata", "demo_MAE_counts.tsv",
- # package = "tMAE", mustWork = TRUE)
-# maeCounts <- read.table(file)
-# res <- run_deseq_all_mae(maeCounts)
-# plotAllelicCounts(res)
+file <- system.file("extdata", "allelic_counts_HG00187.csv", 
+    package = "tMAE", mustWork = TRUE)
+maeCounts <- fread(file)
+res <- DESeq4MAE(maeCounts)
+plotAllelicCounts(res)
+
 }
 \author{
 Vicente Yepez
