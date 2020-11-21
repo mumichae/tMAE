@@ -22,11 +22,11 @@ jobs:
             if(!requireNamespace('R.utils', quietly=TRUE)){
                 install.packages('R.utils');
             };
-            if(!requireNamespace('remotes', quietly=TRUE)){
-                install.packages('remotes');
+            if(!requireNamespace('devtools', quietly=TRUE)){
+                install.packages('devtools');
             };
             R.utils::withTimeout(timeout=2400, { try({
-                remotes::install_deps(dependencies = TRUE)
+                devtools::install_dev_deps()
             }) });
             "
       script: true
