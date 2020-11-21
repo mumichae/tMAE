@@ -19,15 +19,15 @@ add_gnomAD_AF <- function(data,
     populations = c('AF', 'AF_afr', 'AF_amr', 'AF_eas', 'AF_nfe', 'AF_popmax')){
   genome_assembly <- match.arg(genome_assembly)
   if(genome_assembly %in% c('hg19', 'hs37d5')){
-    if(!suppressMessages(requireNamespace("MafDb.gnomAD.r2.1.hs37d5"))){
+    if(!requireNamespace("MafDb.gnomAD.r2.1.hs37d5")){
       stop("Could not load gnomAD MafDb. Please install it.")
     }
-    mafdb <- MafDb.gnomAD.r2.1.hs37d5
+    mafdb <- MafDb.gnomAD.r2.1.hs37d5::MafDb.gnomAD.r2.1.hs37d5
   } else if(genome_assembly %in% c('hg38', 'GRCh38')){
-    if(!suppressMessages(requireNamespace("MafDb.gnomAD.r2.1.GRCh38"))){
+    if(!requireNamespace("MafDb.gnomAD.r2.1.GRCh38")){
       stop("Could not load gnomAD MafDb. Please install it.")
     }
-    mafdb <- MafDb.gnomAD.r2.1.GRCh38
+    mafdb <- MafDb.gnomAD.r2.1.GRCh38::MafDb.gnomAD.r2.1.GRCh38
   } else {
     stop("Please provide a supported genome assembly version.")
   }

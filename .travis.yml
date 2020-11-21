@@ -5,6 +5,25 @@ r: bioc-release
 
 cache: packages
 
+stages:
+  - Setup Cache
+  - Test
+
+# setup cache first
+jobs:
+  include:
+    - stage: Setup Cache
+      r: bioc-release
+      install: 
+        - R -e 'R.utils::withTimeout(timeout=2400, { try({
+            if(!requireNamespace("BiocManager", quietly=TRUE))
+                install.packages("BiocManager", Ncpus=NCPUS)
+            if(!requireNamespace("remotes", quietly=TRUE))
+                install.packages("remotes", Ncpus=NCPUS)
+            remotes::install_deps(dependencies = TRUE)
+        }) })'
+      script: true
+
 before_cache:
   # they are too big to be cached
   - R -e 'remove.packages("MafDb.gnomAD.r2.1.GRCh38")'
