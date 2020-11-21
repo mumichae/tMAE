@@ -40,7 +40,7 @@ add_gnomAD_AF <- function(data,
   gr <- GRanges(seqnames = data$contig,
       ranges = IRanges(start=data$position, width=1), 
       strand = '*')
-  seqlevelsStyle(gr) <- "NCBI"
+  
   # Add score of all, African, American, East Asian and Non-Finnish European
   pt <- score(mafdb, gr, pop = populations) %>% as.data.table()
   res <- cbind(data, pt) %>% as.data.table()

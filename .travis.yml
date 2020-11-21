@@ -20,6 +20,9 @@ jobs:
               if(!requireNamespace('BiocManager', quietly=TRUE)){
                 install.packages('BiocManager', Ncpus=NCPUS);
               };
+              if(!requireNamespace('R.utils', quietly=TRUE)){
+                install.packages('R.utils', Ncpus=NCPUS);
+              };
               if(!requireNamespace('remotes', quietly=TRUE)){
                 install.packages('remotes', Ncpus=NCPUS);
               };
@@ -27,6 +30,8 @@ jobs:
             }) })
             "
       script: true
+    - stage: Test
+      r: bioc-release
 
 before_cache:
   # they are too big to be cached
