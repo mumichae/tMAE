@@ -29,7 +29,8 @@ Imports:
   DESeq2,
   BiocGenerics,
   GenomicScores,
-  S4Vectors
+  S4Vectors,
+  IRanges
 Depends: 
   data.table
 Suggests:
