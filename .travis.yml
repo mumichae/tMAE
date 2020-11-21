@@ -16,18 +16,18 @@ jobs:
       r: bioc-release
       install: 
         - R -e "
-            R.utils::withTimeout(timeout=2400, { try({
-              if(!requireNamespace('BiocManager', quietly=TRUE)){
+            if(!requireNamespace('BiocManager', quietly=TRUE)){
                 install.packages('BiocManager', Ncpus=NCPUS);
-              };
-              if(!requireNamespace('R.utils', quietly=TRUE)){
+            };
+            if(!requireNamespace('R.utils', quietly=TRUE)){
                 install.packages('R.utils', Ncpus=NCPUS);
-              };
-              if(!requireNamespace('remotes', quietly=TRUE)){
+            };
+            if(!requireNamespace('remotes', quietly=TRUE)){
                 install.packages('remotes', Ncpus=NCPUS);
-              };
-              remotes::install_deps(dependencies = TRUE)
-            }) })
+            };
+            R.utils::withTimeout(timeout=2400, { try({
+                remotes::install_deps(dependencies = TRUE)
+            }) });
             "
       script: true
     - stage: Test
