@@ -17,10 +17,12 @@ jobs:
       install: 
         - R -e "
             R.utils::withTimeout(timeout=2400, { try({
-              if(!requireNamespace('BiocManager', quietly=TRUE))
-                install.packages('BiocManager', Ncpus=NCPUS)
-              if(!requireNamespace('remotes', quietly=TRUE))
-                install.packages('remotes', Ncpus=NCPUS)
+              if(!requireNamespace('BiocManager', quietly=TRUE)){
+                install.packages('BiocManager', Ncpus=NCPUS);
+              };
+              if(!requireNamespace('remotes', quietly=TRUE)){
+                install.packages('remotes', Ncpus=NCPUS);
+              };
               remotes::install_deps(dependencies = TRUE)
             }) })
             "
