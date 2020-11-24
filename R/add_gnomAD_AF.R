@@ -43,14 +43,15 @@ add_gnomAD_AF <- function(data,
   
   # Add score of all, African, American, East Asian and Non-Finnish European
   pt <- score(mafdb, gr, pop = populations) %>% as.data.table()
+  colnames(pt) <- populations
   res <- cbind(data, pt) %>% as.data.table()
   
   # Compute the MAX_AF (why do we change col names?)
-  if(any(c("AF", "AF_popmax") %in% colnames(pt))){
-    if("AF_popmax" %in% colnames(pt)){
-      setnames(pt, 'AF_popmax', 'MAX_AF')
+  if(any(c("AF", "AF_popmax") %in% colnames(res))){
+    if("AF_popmax" %in% colnames(res)){
+      res[,MAX_AF:=AF_popmax]
     } else {
-      setnames(pt, 'AF', 'MAX_AF')
+      res[,MAX_AF:=AF]
     }
     
     # Replace Inf with NA
