@@ -25,8 +25,10 @@ jobs:
             if(!requireNamespace('devtools', quietly=TRUE)){
                 install.packages('devtools');
             };
-            R.utils::withTimeout(timeout=2400, { try({
-                devtools::install_dev_deps(repos=BiocManager::repositories())
+            R.utils::withTimeout(timeout=1800, { try({
+                devtools::install_dev_deps(
+                    dependencies=c("Depends", "Imports"),
+                    repos=BiocManager::repositories())
             }) });
             "
       script: true
