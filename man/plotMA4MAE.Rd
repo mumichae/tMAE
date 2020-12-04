@@ -34,11 +34,11 @@ Creates an MA plot, ie, Fold Change (ALT/REF) vs Coverage colored
    minor allele frequency (if rare_column is provided).
 }
 \examples{
-# file <- system.file("extdata", "demo_MAE_counts.tsv",
- # package = "tMAE", mustWork = TRUE)
-# maeCounts <- read.table(file)
-# res <- run_deseq_all_mae(maeCounts)
-# plotMA4MAE(res)
+file <- system.file("extdata", "allelic_counts_HG00187.csv",
+    package = "tMAE", mustWork = TRUE)
+maeCounts <- fread(file)
+res <- DESeq4MAE(maeCounts)
+plotMA4MAE(res)
 }
 \author{
 Vicente Yepez

@@ -23,8 +23,7 @@
 #' @importFrom S4Vectors DataFrame
 #' @importFrom GenomicScores populations seqnames
 #' @importFrom BiocGenerics score start pos
-# #' @importFrom MafDb.gnomAD.r2.1.hs37d5 MafDb.gnomAD.r2.1.hs37d5 # removed because of space
-# #' @importFrom MafDb.gnomAD.r2.1.GRCh38 MafDb.gnomAD.r2.1.GRCh38
+#' @importFrom IRanges IRanges
 #' 
 NULL
 

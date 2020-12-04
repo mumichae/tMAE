@@ -6,19 +6,22 @@
 \usage{
 add_gnomAD_AF(
   data,
-  gene_assembly = c("hg19", "hg38"),
+  genome_assembly = c("hg19", "hs37d5", "hg38", "GRCh38"),
   max_af_cutoff = 0.001,
-  populations = c("AF", "AF_afr", "AF_amr", "AF_eas", "AF_nfe")
+  populations = c("AF", "AF_afr", "AF_amr", "AF_eas", "AF_nfe", "AF_popmax"),
+  ...
 )
 }
 \arguments{
 \item{data}{A data.frame containing allelic counts.}
 
-\item{gene_assembly}{either 'hg19' or 'hg38' indicating the genome assembly of the variants.}
+\item{genome_assembly}{either 'hg19/hs37d5' or 'hg38/GRCh38' indicating the genome assembly of the variants.}
 
 \item{max_af_cutoff}{cutoff for a variant to be considered rare. Default is .001.}
 
-\item{populations}{}
+\item{populations}{The population to be annotated.}
+
+\item{...}{Used for backwards compatibility (gene_assembly -> genome_assembly)}
 }
 \value{
 A data.table with the original contents plus columns containing allele frequencies from different gnomAD populations.
@@ -27,10 +30,11 @@ A data.table with the original contents plus columns containing allele frequenci
 Add allele frequency information from gnomAD.
 }
 \examples{
-# file <- system.file("extdata", "demo_MAE_counts.tsv", package = "tMAE", mustWork = TRUE)
-# maeCounts <- read.table(file)
-# maeRes <- run_deseq_all_mae(maeCounts)
-# maeRes <- add_gnomAD_AF(maeCounts, gene_assembly = 'hg19')
+file <- system.file("extdata", "allelic_counts_HG00187.csv", package = "tMAE", mustWork = TRUE)
+maeCounts <- fread(file)
+maeRes <- DESeq4MAE(maeCounts)
+maeRes <- add_gnomAD_AF(maeCounts, genome_assembly = 'hg19', pop="AF")
+
 }
 \author{
 Vicente Yepez
