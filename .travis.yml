@@ -27,7 +27,7 @@ jobs:
             };
             R.utils::withTimeout(timeout=1800, { try({
                 devtools::install_dev_deps(
-                    dependencies=c("Depends", "Imports"),
+                    dependencies=c('Depends', 'Imports'),
                     repos=BiocManager::repositories())
             }) });
             "
