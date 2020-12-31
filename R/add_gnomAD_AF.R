@@ -23,7 +23,7 @@ add_gnomAD_AF <- function(data,
     ...){
   genome_assembly <- match.arg(genome_assembly)
   if("gene_assembly" %in% names(list(...))){
-    warning("'gene_assembly' is depricated. Please use 'genome_assembly' instead.")
+    warning("'gene_assembly' is deprecated. Please use 'genome_assembly' instead.")
     genome_assembly <- list(...)[['gene_assembly']]
   }
   if(genome_assembly %in% c('hg19', 'hs37d5')){
