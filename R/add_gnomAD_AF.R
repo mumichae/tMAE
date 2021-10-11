@@ -56,10 +56,7 @@ add_gnomAD_AF <- function(data,
   
   # Compute the MAX_AF (why do we change col names?)
   if(any(c("AF", "AF_popmax") %in% colnames(res))){
-    if("AF_popmax" %in% colnames(res)){
-      res[,MAX_AF:=AF_popmax]
-    } else {
-      res[,MAX_AF:=AF]
+    res$MAX_AF <- apply(res[, ..populations], 1, max, na.rm = T)
     }
     
     # Replace Inf with NA

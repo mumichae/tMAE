@@ -1,6 +1,6 @@
 Package: tMAE
 Title: Tests and visualizes for Mono-allelic expressed variants
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: c(
     person(given = "Vicente",
            family = "Yepez",
